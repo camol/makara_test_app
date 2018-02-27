@@ -1,0 +1,21 @@
+defaults: &defaults
+  adapter: makara_postgresql
+  encoding: unicode
+  reconnect: false
+  pool: 5
+  username: makara_test_backend
+  password: makara_test_backend
+  host: postgres
+  database: makara_test_backend
+
+  makara:
+    blacklist_duration: 5
+    master_ttl: 5
+    sticky: false
+    connections:
+     - role: master
+     - role: slave
+       host: postgres
+
+development:
+  <<: *defaults

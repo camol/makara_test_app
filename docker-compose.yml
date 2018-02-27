@@ -1,0 +1,24 @@
+version: "2"
+services:
+  app:
+    stdin_open: true
+    tty: true
+    build: .
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app
+
+  postgres:
+    environment:
+      POSTGRES_USER: makara_test_backend
+      POSTGRES_PASSWORD: makara_test_backend
+    image: postgres:9.5.4
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+volumes:
+  app-logs:
+    driver: local
+  postgres:
+    driver: local
